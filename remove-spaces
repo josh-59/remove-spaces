@@ -1,0 +1,14 @@
+#! /usr/bin/python3
+
+import os
+import sys
+import subprocess
+
+for old_filename in sys.argv[1:]:
+    new_filename = old_filename.replace(" ", "_")
+    if new_filename != old_filename:
+        subprocess.run(["mv", old_filename, new_filename])
+
+if len(sys.argv[1:]) == 0:
+    name = os.path.basename(sys.argv[0])
+    sys.stderr.write(f"Usage: `$ {name} file1 [file2 file3 ...]`\n\tHint: You might mean `$ {name} *`\n")
